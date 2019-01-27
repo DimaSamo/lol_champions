@@ -6,7 +6,16 @@ class LolChampions::Champion
     @@all
   end
 
-  def initialize
+  def initialize(champion_hash)
+    champion_hash.each do |attribute, value|
+      self.send("#{attribute}=", value)
+    end
     @@all.push(self)
+  end
+
+  def self.create_from_collection(champions_array)
+    champions_array.each do |champion_hash|
+      LolChampions::Champion.new(champion_hash)
+    end
   end
 end

@@ -4,7 +4,9 @@ class LolChampions::CLI
         puts "1. List all champions"
         puts "2. List all champions by role"
         newscraper = LolChampions::Scraper.new
-        newscraper.create_champions
-        puts "#{LolChampions::Champion.all.count}"
+        LolChampions::Champion.create_from_collection(newscraper.scrape_champions)
+        LolChampions::Champion.all.each.with_index(1) do |champion, i|
+          puts "#{i}.#{champion.name}"
+        end
     end
 end
