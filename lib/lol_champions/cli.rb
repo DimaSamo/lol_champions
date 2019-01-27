@@ -6,7 +6,8 @@ class LolChampions::CLI
         newscraper = LolChampions::Scraper.new
         LolChampions::Champion.create_from_collection(newscraper.scrape_champions)
         LolChampions::Champion.all.each.with_index(1) do |champion, i|
-          puts "#{i}.#{champion.name}"
+          #binding.pry
+          puts "#{i}.#{champion.role}"
         end
     end
 end
