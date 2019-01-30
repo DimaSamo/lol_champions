@@ -2,9 +2,15 @@ class LolChampions::CLI
     def call
         self.welcome
         self.menu
+        LolChampions::Role.new("AD Carry")
+        LolChampions::Role.new("Support")
+        LolChampions::Role.new("Jungler")
+        LolChampions::Role.new("Top")
+        LolChampions::Role.new("Mid")
         newscraper = LolChampions::Scraper.new
         LolChampions::Champion.create_from_collection(newscraper.scrape_champions)
         self.list_champions
+        puts "#{LolChampions::Role.find_by_name("Support").champions}"
     end
 
     def welcome
@@ -19,7 +25,7 @@ class LolChampions::CLI
 
     def list_champions
       LolChampions::Champion.all.each.with_index(1) do |champion, i|
-        puts "#{i}. #{champion.role}"
+        puts "#{i}. #{champion.roles}"
       end
     end
 

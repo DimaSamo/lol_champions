@@ -1,6 +1,6 @@
 class LolChampions::Champion
     attr_accessor :name, :popularity, :win_rate, :ban_rate, :kills, :deaths, :assists
-    attr_reader :role
+    attr_reader :roles
     @@all = []
 
     def self.all
@@ -14,9 +14,10 @@ class LolChampions::Champion
       @@all.push(self)
     end
 
-    def role=(roles)
-      @role = roles.split(", ").map do |role|
-        role
+    def roles=(roles)
+      @roles = roles.split(", ").map do |role|
+        LolChampions::Role.find_by_name(role).add_champion(self)
+        LolChampions::Role.find_by_name(role)
       end
     end
 
