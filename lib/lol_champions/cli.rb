@@ -30,12 +30,23 @@ class LolChampions::CLI
       @input = gets.strip
       index = input_to_index(@input)
       puts "#{@input}"
+
+      case @input
+      when "1"
+        self.list_champions
+      when "2"
+        self.list_champions_by_role
+      end
     end
 
     def list_champions
       LolChampions::Champion.all.each.with_index(1) do |champion, i|
-        puts "#{i}. #{champion.roles}"
+        puts "#{i}. #{champion.name}"
       end
+    end
+
+    def list_champions_by_role
+      LolChampions::Role.find_by_name("Mid").display_champions
     end
 
     def input_to_index(input)
