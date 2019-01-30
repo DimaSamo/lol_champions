@@ -19,7 +19,7 @@ class LolChampions::CLI
 
     def list_champions
       LolChampions::Champion.all.each.with_index(1) do |champion, i|
-        puts "#{i}. #{champion.name}"
+        puts "#{i}. #{champion.role}"
       end
     end
 

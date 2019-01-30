@@ -15,7 +15,7 @@ class LolChampions::Champion
     end
 
     def role=(roles)
-      @role = roles.split(",").map do |role|
+      @role = roles.split(", ").map do |role|
         role
       end
     end
