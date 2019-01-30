@@ -7,7 +7,7 @@ class LolChampions::Role
     end
 
     def self.find_by_name(name)
-      @@all.find {|role| name == role.name}
+      @@all.find {|role| name.downcase == role.name.downcase}
     end
 
     def initialize(name)

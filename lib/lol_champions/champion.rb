@@ -7,6 +7,10 @@ class LolChampions::Champion
       @@all
     end
 
+    def self.find_by_name(name)
+      @@all.find {|role| name.downcase == role.name.downcase}
+    end
+
     def initialize(champion_hash)
       champion_hash.each do |attribute, value|
         self.send("#{attribute}=", value)

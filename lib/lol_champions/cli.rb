@@ -29,13 +29,20 @@ class LolChampions::CLI
       puts "3. Exit"
       @input = gets.strip
       index = input_to_index(@input)
-      puts "#{@input}"
 
       case @input
       when "1"
         self.list_champions
       when "2"
         self.list_champions_by_role
+      when "3"
+        puts "Please enter a champion name"
+        champ_name = gets.chomp
+        if LolChampions::Champion.find_by_name(champ_name)
+          puts "What information would you like to display?"
+        else
+          puts "Champion doesn't exist, please enter a valid champion name."
+        end
       end
     end
 
