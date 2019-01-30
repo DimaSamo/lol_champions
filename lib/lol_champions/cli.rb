@@ -1,7 +1,7 @@
 class LolChampions::CLI
     def call
+        @input = ""
         self.welcome
-        self.menu
         LolChampions::Role.new("AD Carry")
         LolChampions::Role.new("Support")
         LolChampions::Role.new("Jungler")
@@ -9,8 +9,13 @@ class LolChampions::CLI
         LolChampions::Role.new("Mid")
         newscraper = LolChampions::Scraper.new
         LolChampions::Champion.create_from_collection(newscraper.scrape_champions)
-        self.list_champions
-        puts "#{LolChampions::Role.find_by_name("Support").champions}"
+        while @input != "exit"
+          self.menu
+        end
+
+
+      #  self.list_champions
+      #  LolChampions::Role.find_by_name("Mid").display_champions
     end
 
     def welcome
@@ -18,15 +23,23 @@ class LolChampions::CLI
     end
 
     def menu
-      puts "1. List all champions"
-      puts "2. List all champions by role"
+      puts "1. List all champions."
+      puts "2. List all champions by role."
+      puts "3. Display information about a champion."
       puts "3. Exit"
+      @input = gets.strip
+      index = input_to_index(@input)
+      puts "#{@input}"
     end
 
     def list_champions
       LolChampions::Champion.all.each.with_index(1) do |champion, i|
         puts "#{i}. #{champion.roles}"
       end
+    end
+
+    def input_to_index(input)
+      input.to_i-1
     end
 
 end

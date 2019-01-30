@@ -20,5 +20,10 @@ class LolChampions::Role
       @champions.push(champion)
     end
 
+    def display_champions
+      @champions.each.with_index(1) do |champion, index|
+        puts "#{index}. #{champion.name}"
+      end
+    end
+
   end
-  

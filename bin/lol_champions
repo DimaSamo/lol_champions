@@ -1,4 +1,3 @@
 #!/usr/bin/env ruby
 require "./lib/lol_champions"
-puts "Hello World"
 LolChampions::CLI.new.call
