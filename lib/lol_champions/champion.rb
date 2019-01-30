@@ -7,6 +7,12 @@ class LolChampions::Champion
       @@all
     end
 
+    def self.all_by_winrate
+      @@all.sort_by do |champion|
+        champion.win_rate
+      end.reverse
+    end
+
     def self.find_by_name(name)
       @@all.find {|role| name.downcase == role.name.downcase}
     end
