@@ -37,12 +37,35 @@ class LolChampions::CLI
         self.list_champions_by_role
       when "3"
         puts "Please enter a champion name"
-        champ_name = gets.chomp
-        if LolChampions::Champion.find_by_name(champ_name)
-          puts "What information would you like to display?"
-        else
-          puts "Champion doesn't exist, please enter a valid champion name."
-        end
+        self.additional_info_options
+        # puts "Please enter a champion name"
+        # champ_name = gets.chomp
+        # champion = LolChampions::Champion.find_by_name(champ_name)
+        #
+        # if champion
+        #   puts "What information would you like to display?"
+        #   puts "1. Popularity, 2. Win Rate, 3. Ban Rate, 4. KDA, 5. All of it"
+        #   champion_input = gets.chomp
+        #   case champion_input
+        #   when "1"
+        #     puts "#{champion.popularity}"
+        #   when "2"
+        #     puts "#{champion.win_rate}"
+        #   when "3"
+        #     puts "#{champion.ban_rate}"
+        #   when "4"
+        #     puts "KDA: #{champion.display_kda}"
+        #   when "5"
+        #     puts "Champion Name: #{champion.name}"
+        #     puts "Popularity: #{champion.popularity}"
+        #     puts "Win Rate: #{champion.win_rate}"
+        #     puts "Ban Rate: #{champion.ban_rate}"
+        #     puts "KDA: #{champion.display_kda}"
+        #   end
+        #
+        # else
+        #   puts "Champion doesn't exist, please enter a valid champion name."
+        # end
       end
     end
 
@@ -54,6 +77,36 @@ class LolChampions::CLI
 
     def list_champions_by_role
       LolChampions::Role.find_by_name("Mid").display_champions
+    end
+
+    def additional_info_options
+      champ_name = gets.chomp
+      champion = LolChampions::Champion.find_by_name(champ_name)
+      if champion
+        puts "What information would you like to display?"
+        puts "1. Popularity, 2. Win Rate, 3. Ban Rate, 4. KDA, 5. All of it"
+        champion_input = gets.chomp
+        case champion_input
+        when "1"
+          puts "#{champion.popularity}"
+        when "2"
+          puts "#{champion.win_rate}"
+        when "3"
+          puts "#{champion.ban_rate}"
+        when "4"
+          puts "KDA: #{champion.display_kda}"
+        when "5"
+          puts "Champion Name: #{champion.name}"
+          puts "Popularity: #{champion.popularity}"
+          puts "Win Rate: #{champion.win_rate}"
+          puts "Ban Rate: #{champion.ban_rate}"
+          puts "KDA: #{champion.display_kda}"
+        end
+
+      else
+        puts "Champion doesn't exist, please enter a valid champion name or type menu to go back to the menu." unless champ_name == "menu"
+        self.additional_info_options unless champ_name == "menu"
+      end
     end
 
     def input_to_index(input)

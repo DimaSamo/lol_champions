@@ -27,7 +27,7 @@ class LolChampions::Champion
 
     def display_kda
       ratio = (self.kills.to_f + self.assists.to_f)/self.deaths.to_f
-      puts "#{ratio.round(2)} - Average: #{self.kills}/#{self.deaths}/#{self.assists}"
+      "#{ratio.round(2)} - Average: #{self.kills}/#{self.deaths}/#{self.assists}"
     end
 
     def self.create_from_collection(champions_array)
