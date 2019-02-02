@@ -37,7 +37,6 @@ class LolChampions::CLI
       when "3"
         self.list_champions_by_role
       when "4"
-        puts "Please enter a champion name"
         self.additional_info_options
       when "5"
         @input = "exit"
@@ -45,12 +44,14 @@ class LolChampions::CLI
     end
 
     def list_champions
+      puts "---------------------------------"
       LolChampions::Champion.all.each.with_index(1) do |champion, i|
         puts "#{i}. #{champion.name}"
       end
     end
 
     def list_champions_by_role
+      puts "---------------------------------"
       puts "Please choose a role."
       puts "1. Top"
       puts "2. Jungler"
@@ -73,6 +74,7 @@ class LolChampions::CLI
     end
 
     def list_champions_by_winrate
+      puts "---------------------------------"
       LolChampions::Champion.all_by_winrate.each.with_index(1) do |champion, i|
         puts "#{i}. #{champion.name} - #{champion.win_rate}"
       end
@@ -81,29 +83,41 @@ class LolChampions::CLI
 
 
     def additional_info_options
+      puts "---------------------------------"
+      puts "Please enter a champion name"
       champ_name = gets.chomp
       champion = LolChampions::Champion.find_by_name(champ_name)
       if champion
+        puts "---------------------------------"
         puts "What information would you like to display?"
         puts "1. Popularity, 2. Win Rate, 3. Ban Rate, 4. KDA, 5. All of it"
-        champion_input = gets.chomp
-        case champion_input
-        when "1"
-          puts "#{champion.popularity}"
-        when "2"
-          puts "#{champion.win_rate}"
-        when "3"
-          puts "#{champion.ban_rate}"
-        when "4"
-          puts "KDA: #{champion.display_kda}"
-        when "5"
-          puts "Champion Name: #{champion.name}"
-          puts "Popularity: #{champion.popularity}"
-          puts "Win Rate: #{champion.win_rate}"
-          puts "Ban Rate: #{champion.ban_rate}"
-          puts "KDA: #{champion.display_kda}"
+        info_input = gets.chomp
+        while info_input
+          case info_input
+          when "1"
+            puts "#{champion.popularity}"
+            info_input = nil
+          when "2"
+            puts "#{champion.win_rate}"
+            info_input = nil
+          when "3"
+            puts "#{champion.ban_rate}"
+            info_input = nil
+          when "4"
+            puts "KDA: #{champion.display_kda}"
+            info_input = nil
+          when "5"
+            puts "Champion Name: #{champion.name}"
+            puts "Popularity: #{champion.popularity}"
+            puts "Win Rate: #{champion.win_rate}"
+            puts "Ban Rate: #{champion.ban_rate}"
+            puts "KDA: #{champion.display_kda}"
+            info_input = nil
+          else
+            puts "Please enter correct input (1-5)"
+            info_input = gets.chomp
+          end
         end
-
       else
         puts "Champion doesn't exist, please enter a valid champion name or type menu to go back to the menu." unless champ_name == "menu"
         self.additional_info_options unless champ_name == "menu"
