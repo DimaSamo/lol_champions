@@ -19,6 +19,7 @@ class LolChampions::CLI
     end
 
     def menu
+      puts "---------------------------------"
       puts "Please select an option (use the numbers)"
       puts "1. List all champions."
       puts "2. List all champions by win rate."
@@ -50,7 +51,25 @@ class LolChampions::CLI
     end
 
     def list_champions_by_role
-      LolChampions::Role.find_by_name("Mid").display_champions
+      puts "Please choose a role."
+      puts "1. Top"
+      puts "2. Jungler"
+      puts "3. Mid"
+      puts "4. AD Carry"
+      puts "5. Support"
+      input = gets.chomp
+      case input
+      when "1"
+        LolChampions::Role.find_by_name("Top").display_champions3
+      when "2"
+        LolChampions::Role.find_by_name("Jungler").display_champions
+      when "3"
+        LolChampions::Role.find_by_name("Mid").display_champions
+      when "4"
+        LolChampions::Role.find_by_name("AD Carry").display_champions
+      when "5"
+        LolChampions::Role.find_by_name("Support").display_champions
+      end
     end
 
     def list_champions_by_winrate
@@ -58,6 +77,8 @@ class LolChampions::CLI
         puts "#{i}. #{champion.name} - #{champion.win_rate}"
       end
     end
+
+
 
     def additional_info_options
       champ_name = gets.chomp
