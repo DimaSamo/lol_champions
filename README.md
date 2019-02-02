@@ -1,4 +1,3 @@
-HELLO WORLD
 # LolChampions
 
 This Ruby Gem provides a CLI that displays statistics of all the champions in the game League of Legends.
