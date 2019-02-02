@@ -4,21 +4,7 @@ HELLO WORLD
 This Ruby Gem provides a CLI that displays statistics of all the champions in the game League of Legends.
 
 ## Installation
-
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'lol_champions'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
     $ gem install lol_champions
-
 ## Usage
 
 TODO: Write usage instructions here
