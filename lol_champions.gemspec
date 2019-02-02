@@ -9,8 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["'Dmitri Samotessov'"]
   spec.email         = ["'dimasamo96@gmail.com'"]
 
-  spec.summary       = %q{Write a short summary, because RubyGems requires one.}
-  spec.description   = %q{Write a longer description or delete this line.}
+  spec.summary       = %q{This Ruby Gem provides a CLI that displays statistics of all the champions in the game League of Legends.}
   spec.homepage      = "https://github.com/DimaSamo/lol_champions"
   spec.license       = "MIT"
 
@@ -27,8 +26,8 @@ Gem::Specification.new do |spec|
   #     "public gem pushes."
   # end
 
-  # Specify which files should be added to the gem when it is released.
-  # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
+  Specify which files should be added to the gem when it is released.
+  The `git ls-files -z` loads the files in the RubyGem that have been added into git.
   spec.files         = Dir.chdir(File.expand_path('..', __FILE__)) do
     `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   end
