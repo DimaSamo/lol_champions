@@ -47,6 +47,7 @@ class LolChampions::CLI
       puts "---------------------------------"
       LolChampions::Champion.all.each.with_index(1) do |champion, i|
         puts "#{i}. #{champion.name}"
+        self.list_twenty_five if i%25 == 0
       end
     end
 
@@ -61,14 +62,24 @@ class LolChampions::CLI
       input = gets.chomp
       case input
       when "1"
-        LolChampions::Role.find_by_name("Top").display_champions3
+        puts "---------------------------------"
+        puts "All available Top champions:"
+        LolChampions::Role.find_by_name("Top").display_champions
       when "2"
+        puts "---------------------------------"
+        puts "All available Jungler champions:"
         LolChampions::Role.find_by_name("Jungler").display_champions
       when "3"
+        puts "---------------------------------"
+        puts "All available Mid champions:"
         LolChampions::Role.find_by_name("Mid").display_champions
       when "4"
+        puts "---------------------------------"
+        puts "All available AD Carry champions:"
         LolChampions::Role.find_by_name("AD Carry").display_champions
       when "5"
+        puts "---------------------------------"
+        puts "All available Support champions:"
         LolChampions::Role.find_by_name("Support").display_champions
       end
     end
@@ -77,6 +88,7 @@ class LolChampions::CLI
       puts "---------------------------------"
       LolChampions::Champion.all_by_winrate.each.with_index(1) do |champion, i|
         puts "#{i}. #{champion.name} - #{champion.win_rate}"
+        self.list_twenty_five if i%25 == 0
       end
     end
 
@@ -95,18 +107,23 @@ class LolChampions::CLI
         while info_input
           case info_input
           when "1"
-            puts "#{champion.popularity}"
+            puts "---------------------------------"
+            puts "#{champion.name}'s popularity is: #{champion.popularity}"
             info_input = nil
           when "2"
-            puts "#{champion.win_rate}"
+            puts "---------------------------------"
+            puts "#{champion.name}'s win rate is: #{champion.win_rate}"
             info_input = nil
           when "3"
-            puts "#{champion.ban_rate}"
+            puts "---------------------------------"
+            puts "#{champion.name}'s ban rate is: #{champion.ban_rate}"
             info_input = nil
           when "4"
-            puts "KDA: #{champion.display_kda}"
+            puts "---------------------------------"
+            puts "#{champion.name}'s KDA is: #{champion.display_kda}"
             info_input = nil
           when "5"
+            puts "---------------------------------"
             puts "Champion Name: #{champion.name}"
             puts "Popularity: #{champion.popularity}"
             puts "Win Rate: #{champion.win_rate}"
@@ -122,6 +139,13 @@ class LolChampions::CLI
         puts "Champion doesn't exist, please enter a valid champion name or type menu to go back to the menu." unless champ_name == "menu"
         self.additional_info_options unless champ_name == "menu"
       end
+    end
+
+    def list_twenty_five
+      puts "----------------------------"
+      puts "Press any key to display the next 25 champions."
+      gets.chomp
+      puts "----------------------------"
     end
 
     def input_to_index(input)
