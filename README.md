@@ -7,8 +7,8 @@ This Ruby Gem provides a CLI that displays statistics of all the champions in th
     $ gem install lol_champions
 ## Usage
 
-TODO: Write usage instructions here
-
+  Type the below and follow the on screen prompts.
+  $ lol_champions
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
@@ -17,7 +17,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/'synchronous-commit-7716'/lol_champions. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/DimaSamo/lol_champions. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 
@@ -25,4 +25,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the LolChampions project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/'synchronous-commit-7716'/lol_champions/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the LolChampions project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/DimaSamo/lol_champions/blob/master/CODE_OF_CONDUCT.md).
