@@ -2,11 +2,8 @@ class LolChampions::CLI
     def call
         @input = ""
         self.welcome
-        LolChampions::Role.new("AD Carry")
-        LolChampions::Role.new("Support")
-        LolChampions::Role.new("Jungler")
-        LolChampions::Role.new("Top")
-        LolChampions::Role.new("Mid")
+        @role_names = ["Top", "Jungler", "Mid", "AD Carry", "Support"]
+        @role_names.each.with_index(0) {|role, index| LolChampions::Role.new(@role_names[index]) }
         newscraper = LolChampions::Scraper.new
         LolChampions::Champion.create_from_collection(newscraper.scrape_champions)
         while @input != "exit"
@@ -54,34 +51,11 @@ class LolChampions::CLI
     def list_champions_by_role
       puts "---------------------------------"
       puts "Please choose a role."
-      puts "1. Top"
-      puts "2. Jungler"
-      puts "3. Mid"
-      puts "4. AD Carry"
-      puts "5. Support"
+      self.list_all_roles
       input = gets.chomp
-      case input
-      when "1"
-        puts "---------------------------------"
-        puts "All available Top champions:"
-        LolChampions::Role.find_by_name("Top").display_champions
-      when "2"
-        puts "---------------------------------"
-        puts "All available Jungler champions:"
-        LolChampions::Role.find_by_name("Jungler").display_champions
-      when "3"
-        puts "---------------------------------"
-        puts "All available Mid champions:"
-        LolChampions::Role.find_by_name("Mid").display_champions
-      when "4"
-        puts "---------------------------------"
-        puts "All available AD Carry champions:"
-        LolChampions::Role.find_by_name("AD Carry").display_champions
-      when "5"
-        puts "---------------------------------"
-        puts "All available Support champions:"
-        LolChampions::Role.find_by_name("Support").display_champions
-      end
+      puts "---------------------------------"
+      puts "All available #{@role_names[input.to_i-1]} champions:"
+      LolChampions::Role.all[input.to_i-1].display_champions
     end
 
     def list_champions_by_winrate
@@ -92,6 +66,11 @@ class LolChampions::CLI
       end
     end
 
+    def list_all_roles
+      LolChampions::Role.all.each.with_index(1) do |role, index|
+        puts "#{index}. #{role.name}"
+      end
+    end
 
 
     def additional_info_options
